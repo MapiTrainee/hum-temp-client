@@ -13,8 +13,14 @@ public class ClientPropertiesUtil {
 	Properties properties = new Properties();
 	try (InputStream io = ClassLoader.getSystemClassLoader().getResourceAsStream(PROPERTIES_FILENAME)) {
 	    properties.load(io);
+	    Properties systemProperties = System.getProperties();
+	    for (Object object : properties.keySet()) {
+		if (systemProperties.containsKey(object)) {
+		    properties.setProperty((String) object, (String) systemProperties.get(object));
+		}
+	    }
 	} catch (IOException ex) {
-	    throw new IllegalStateException("Problem with properties file " + PROPERTIES_FILENAME);
+	    throw new IllegalStateException("Cannot read properties!");
 	}
 	return properties;
     }
