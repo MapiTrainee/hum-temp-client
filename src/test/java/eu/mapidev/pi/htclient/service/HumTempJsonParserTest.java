@@ -11,11 +11,11 @@ public class HumTempJsonParserTest {
 
     private static final int INPUT_HUM = 50;
     private static final int INPUT_TEMP = 30;
-    private HumTempJsonParser parser;
+    private HumTempJsonParserImpl parser;
 
     @Before
     public void setUp() {
-	parser = new HumTempJsonParser();
+	parser = new HumTempJsonParserImpl();
     }
 
     @Test

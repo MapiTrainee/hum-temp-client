@@ -1,13 +1,6 @@
 package eu.mapidev.pi.htclient.service;
 
-public class HumTempReader {
+public interface HumTempReader {
 
-    public int readTemperature() {
-	throw new UnsupportedOperationException();
-    }
-
-    public int readHumidityPercentage() {
-	throw new UnsupportedOperationException();
-    }
-
+    int[] readData();
 }

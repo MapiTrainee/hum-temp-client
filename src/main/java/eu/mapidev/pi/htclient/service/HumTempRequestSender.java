@@ -1,10 +1,7 @@
 package eu.mapidev.pi.htclient.service;
 
-public class HumTempRequestSender {
+public interface HumTempRequestSender {
 
-    public void send(String content) {
-	// WHERE WHAT AND HOW 
-	throw new UnsupportedOperationException();
-    }
-
+    boolean send(String content);
+    
 }

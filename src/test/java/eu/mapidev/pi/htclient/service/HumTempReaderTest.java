@@ -6,26 +6,28 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertThat;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.BDDMockito;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class HumTempReaderTest {
 
-    private HumTempReader reader;
-
-    @Before
-    public void setUp() {
-	reader = new HumTempReader();
-    }
+    @Mock
+    private AdafruitPythonDHTReader reader;
 
     @Test
     public void shouldReadCurrentTemperature() {
-	assertThat(reader.readTemperature(), is(both(lessThanOrEqualTo(100)).and(greaterThan(-100))));
+	BDDMockito.given(reader.readData()).willReturn(new int[]{20, 20});
+	assertThat(reader.readData()[1], is(both(lessThanOrEqualTo(100)).and(greaterThan(-100))));
     }
 
     @Test
     public void shouldReadCurrentHumidityPercante() {
-	assertThat(reader.readHumidityPercentage(), is(both(lessThanOrEqualTo(100)).and(greaterThanOrEqualTo(0))));
+	BDDMockito.given(reader.readData()).willReturn(new int[]{20, 20});
+	assertThat(reader.readData()[0], is(both(lessThanOrEqualTo(100)).and(greaterThanOrEqualTo(0))));
     }
 
 }
