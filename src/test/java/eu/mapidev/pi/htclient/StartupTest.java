@@ -1,10 +1,6 @@
 package eu.mapidev.pi.htclient;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.Properties;
-import org.hamcrest.Matchers;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
