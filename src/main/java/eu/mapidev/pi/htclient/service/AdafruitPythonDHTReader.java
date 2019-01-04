@@ -11,14 +11,18 @@ import java.util.regex.Pattern;
 
 public class AdafruitPythonDHTReader implements HumTempReader {
 
+    private static final Logger LOGGER = Logger.getLogger(AdafruitPythonDHTReader.class.getName());
+
     private static final String PYTHON_CMD = getPythonCmd();
     private static final String REGEX = "Temp=(\\d+)\\.\\d\\*\\s+Humidity=(\\d+)\\.\\d%";
-    private static final Logger LOGGER = Logger.getLogger(AdafruitPythonDHTReader.class.getName());
 
     private static String getPythonCmd() {
 	String pinNumber = getProperty("htclient.dht.pin");
 	String sensorNumber = getProperty("htclient.dht.sensor");
-	return "sudo python AdafruitDHT.py " + sensorNumber + " " + pinNumber;
+	String adafruitScript = getProperty("htclient.adafruit.script");
+	String cmd = "sudo python " + adafruitScript + " " + sensorNumber + " " + pinNumber;
+	LOGGER.info(cmd);
+	return cmd;
     }
 
     @Override
